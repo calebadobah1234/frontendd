@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 
-const page = async ({ params }) => {
+const Page = async ({ params }) => {
   const [notVoted, setNotVoted] = useState(true);
   const res = await fetch(`http://localhost:5000/get-item/${params.id}`, {
     next: { revalidate: 0 },
