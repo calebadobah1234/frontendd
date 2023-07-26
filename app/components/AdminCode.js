@@ -5,6 +5,7 @@ import DeleteButton from "./DeleteButton";
 import { useRouter } from "next/navigation";
 const AdminCode = (props) => {
   const router = useRouter();
+  localStorage.setItem("userEmail", "");
   const email = localStorage.getItem("userEmail");
   if (email == "") {
     router.push("/");

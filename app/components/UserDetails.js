@@ -3,6 +3,8 @@ import React from "react";
 import { useRouter } from "next/navigation";
 
 const UserDetails = () => {
+  localStorage.setItem("userName", "");
+  localStorage.setItem("userVoteRemaining", "");
   const name = localStorage.getItem("userName");
   const voteRemaining = localStorage.getItem("userVoteRemaining");
   const router = useRouter();
