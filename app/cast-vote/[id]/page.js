@@ -4,16 +4,18 @@ import React, { useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 
-const Page = async ({ params }) => {
+const res = await fetch(`http://localhost:5000/get-item/${params.id}`, {
+  next: { revalidate: 0 },
+});
+const data = await res.json();
+const addVote = async () => {
+  await axios.post(`http://localhost:5000/add-vote/${params.id}`);
+  setNotVoted(false);
+};
+
+const Page = ({ params }) => {
   const [notVoted, setNotVoted] = useState(true);
-  const res = await fetch(`http://localhost:5000/get-item/${params.id}`, {
-    next: { revalidate: 0 },
-  });
-  const data = await res.json();
-  const addVote = async () => {
-    await axios.post(`http://localhost:5000/add-vote/${params.id}`);
-    setNotVoted(false);
-  };
+
   return (
     <div className="flex justify-center mt-16">
       <div className="flex">
@@ -35,4 +37,4 @@ const Page = async ({ params }) => {
   );
 };
 
-export default page;
+export default Page;
