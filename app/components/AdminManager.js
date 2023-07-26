@@ -2,7 +2,7 @@ import React from "react";
 
 import AdminCode from "./AdminCode";
 const AdminManager = async () => {
-  const res = await fetch("http://localhost:5000/get-20-items", {
+  const res = await fetch("https://etornam.onrender.com/get-20-items", {
     next: {
       revalidate: 0,
     },

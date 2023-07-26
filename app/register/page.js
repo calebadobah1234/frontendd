@@ -22,7 +22,7 @@ const Page = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:5000/auth/register", {
+      .post("https://etornam.onrender.com/auth/register", {
         email: email,
         password: password,
         name: name,
@@ -41,7 +41,7 @@ const Page = () => {
       <Navbar />
       <div className="flex justify-center items-center my-40">
         <form
-          action="http://localhost:5000/auth/login"
+          action="https://etornam.onrender.com/auth/login"
           method="post"
           class="bg-white p-8 shadow-md rounded-md w-96"
           onSubmit={handleSubmit}

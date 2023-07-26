@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 const DeleteButton = (props) => {
   const router = useRouter();
   const deleteFunction = async (id) => {
-    await axios.post(`http://localhost:5000/delete-candidate/${id}`);
+    await axios.post(`https://etornam.onrender.com/delete-candidate/${id}`);
   };
   const reloadFunction = () => {
     router.refresh();

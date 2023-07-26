@@ -21,7 +21,7 @@ const AdminForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:5000/add-candidate", {
+      .post("https://etornam.onrender.com/add-candidate", {
         name: name,
         position: position,
         img: image,

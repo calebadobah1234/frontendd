@@ -4,12 +4,12 @@ import React, { useState } from "react";
 import Image from "next/image";
 import axios from "axios";
 
-const res = await fetch(`http://localhost:5000/get-item/${params.id}`, {
+const res = await fetch(`https://etornam.onrender.com/get-item/${params.id}`, {
   next: { revalidate: 0 },
 });
 const data = await res.json();
 const addVote = async () => {
-  await axios.post(`http://localhost:5000/add-vote/${params.id}`);
+  await axios.post(`https://etornam.onrender.com/add-vote/${params.id}`);
   setNotVoted(false);
 };
 

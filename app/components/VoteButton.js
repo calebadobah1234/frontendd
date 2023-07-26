@@ -7,14 +7,14 @@ const VoteButton = (props) => {
   const voteRemaining = localStorage.getItem("userVoteRemaining");
   const router = useRouter();
   const addVote = async (id) => {
-    await axios.post(`http://localhost:5000/add-vote/${id}`);
+    await axios.post(`https://etornam.onrender.com/add-vote/${id}`);
   };
 
   const decVotesLeft = async (id) => {
     const _id = localStorage.getItem("userId");
 
     if (voteRemaining > 0 || voteRemaining < 0) {
-      await axios.post(`http://localhost:5000/auth/dec/${_id}`);
+      await axios.post(`https://etornam.onrender.com/auth/dec/${_id}`);
       localStorage.removeItem(voteRemaining);
       localStorage.setItem("userVoteRemaining", 0);
       router.refresh();
