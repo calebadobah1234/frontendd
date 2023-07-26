@@ -22,6 +22,7 @@ const nextConfig = {
       "www.autoexpress.co.uk",
       "dvjvjfjfe",
     ],
+    ssg: false,
   },
 };
 
