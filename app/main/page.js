@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import MainList from "../components/MainList";
 import UserDetails from "../components/UserDetails";

@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import AdminManager from "../components/AdminManager";
 import AdminForm from "../components/AdminForm";
