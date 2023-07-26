@@ -3,40 +3,36 @@ import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import Navbar from "./components/Navbar";
-
+import Navbar from "../components/Navbar";
 const page = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const emailFunction = (e) => {
     setEmail(e.target.value);
   };
   const passwordFunction = (e) => {
     setPassword(e.target.value);
   };
+  const nameFunction = (e) => {
+    setName(e.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:5000/auth/login", {
+      .post("http://localhost:5000/auth/register", {
         email: email,
         password: password,
+        name: name,
       })
       .then((res) => {
         console.log(res.data);
-        if (res.data.logged == true) {
-          localStorage.setItem("userEmail", res.data.user.email);
-          localStorage.setItem("userName", res.data.user.name);
-          localStorage.setItem(
-            "userVoteRemaining",
-            res.data.user.voteRemaining
-          );
-          localStorage.setItem("userId", res.data.user._id);
-          router.push("/main");
-        }
-        if (res.data.doesNotExist && res.data.doesNotExist == true) {
-          alert("account does not exist try registering");
+        if (res.data.alreadyExist == false && res.data.logged == true) {
+          router.push("/");
+        } else if (res.data.alreadyExist == true) {
+          alert("user already exists");
         }
       });
   };
@@ -50,9 +46,23 @@ const page = () => {
           class="bg-white p-8 shadow-md rounded-md w-96"
           onSubmit={handleSubmit}
         >
-          <h2 class="text-2xl font-bold mb-6 text-center">Login</h2>
+          <h2 class="text-2xl font-bold mb-6 text-center">Register</h2>
           <div class="mb-4">
-            <label for="email" class="block font-medium mb-2 ">
+            <label for="email" class="block font-medium mb-2">
+              Name
+            </label>
+            <input
+              type="string"
+              id="name"
+              name="name"
+              placeholder="John Doe"
+              class="w-full border border-gray-300 p-2 rounded-md"
+              value={name}
+              onChange={nameFunction}
+            ></input>
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block font-medium mb-2">
               Email
             </label>
             <input
@@ -93,10 +103,10 @@ const page = () => {
               type="submit"
               class="px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600"
             >
-              Login
-            </button>
-            <Link href="/register" class="text-blue-500 hover:text-blue-600">
               Register
+            </button>
+            <Link href="/login" class="text-blue-500 hover:text-blue-600">
+              login
             </Link>
           </div>
         </form>
